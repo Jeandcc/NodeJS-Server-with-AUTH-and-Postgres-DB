@@ -103,5 +103,9 @@ By doing this we will get Prettier errors included in ESLint errors.
 
 First, we need to **install** the extensions both for Prettier and for ESLint on VSC. After doing so, refresh the code editor and you'llbe able to see the changes.
 
-Another useful addition is auto-format on save. Click cmd + , to open VSCode settings and add this line to workspace settings: `"editor.formatOnSave":true`
+Another useful addition is auto-format on save. Click cmd + "," to open VSCode settings and add this line to workspace settings: `"editor.formatOnSave":true`
 Now every time you save your file it will automatically be prettified.
+
+To format the document according to ESLint standards, add this line to the **settings.JSON** file.
+
+`"eslint.autoFixOnSave": true,`
