@@ -16,20 +16,39 @@ The basic server structure will be imported from [this GitHub repository](https:
 
 The code below will install the dependencies locally to our project and make them as DevDependencies, not taking them to the production environment. 
 
- `yarn add nodemon sucrase -D`
+ `$ yarn add nodemon sucrase -D`
 
  ### Adding scripts to the package.json
 
- We'll add two custom scripts into the package.json file. 
+ We'll add the following custom script into the package.json file. 
 
  At the end, it will look like this:
 
  ```
   "scripts": {
     "dev": "nodemon src/server.js",
-    "build": "sucrase ./src -d ./dist --transforms imports"
   },
  ```
+
+ ### Configuring Nodemon so it runs Sucrase when we call it
+
+ To do so, we need to create a file in the root of our application called *nodemon.json* with the following content:
+
+ ```
+{
+  "watch": ["src"],
+  "ext": "js",
+  "execMap": {
+    "js": "sucrase-node src/server.js"
+  }
+}
+ ```
+
+ The  JSON above is simple:
+
+ - It tells Nodemon to watch for changes on the **src** directory
+ - It watches for file changes on JS files
+ - It specifies the executable and the language that should be run by default.
 
  ## 2. Setting up Prettier + ESLint + EditorConfig
 
