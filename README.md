@@ -99,9 +99,9 @@ Run the following code:
 
 By doing this we will get Prettier errors included in ESLint errors.
 
-###2.6 Automating the process
+### 2.6 Automating the process
 
-First, we need to **install** the extensions both for Prettier and for ESLint on VSC. After doing so, refresh the code editor and you'llbe able to see the changes.
+First, we need to **install** the extensions both for Prettier and for ESLint on VSC. After doing so, refresh the code editor and you'll be able to see the changes.
 
 Another useful addition is auto-format on save. Click cmd + "," to open VSCode settings and add this line to workspace settings: `"editor.formatOnSave":true`
 Now every time you save your file it will automatically be prettified.

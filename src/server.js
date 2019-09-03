@@ -14,19 +14,19 @@ const projects = [
 ];
 
 let count = 0;
-const index = 0;
+let index = 0;
 let project = projects[0];
 
 function checkIfProjectExists(req, res, next) {
   const { id } = req.params;
-  for (let i = 0; i < projects.length; i++) {
-    if (projects[i].id == id) {
+  for (let i = 0; i < projects.length; i += 1) {
+    if (projects[i].id === id) {
       project = projects[i];
-      const index = i;
+      index = i;
       return next();
     }
   }
-  res.status(400).json({ error: "Project not found" });
+  return res.status(400).json({ error: "Project not found" });
 }
 
 app.use((req, res, next) => {
@@ -51,14 +51,12 @@ app.post("/projects", (req, res) => {
     tasks
   };
   projects.push(newProject);
-  console.log(projects);
   res.send();
 });
 
 app.get("/projects", (req, res) => {
   let renderContent = "";
-  for (let i = 0; i < projects.length; i++) {
-    console.log(projects[i]);
+  for (let i = 0; i < projects.length; i += 1) {
     renderContent += `
     Id: ${projects[i].id}<br>
     Project: ${projects[i].title}<br>
