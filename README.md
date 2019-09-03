@@ -46,15 +46,16 @@ To do so, we need to create a file in the root of our application called _nodemo
 
 The JSON above is simple:
 
--   It tells Nodemon to watch for changes on the **src** directory
--   It watches for file changes on JS files
--   It specifies the executable and the language that should be run by default.
+- It tells Nodemon to watch for changes on the **src** directory
+- It watches for file changes on JS files
+- It specifies the executable and the language that should be run by default.
 
 ## 2. Setting up Prettier + ESLint + EditorConfig
 
 These softwares will be responsible for formatting the code according to a standard (Airbnb), check for typos and process new syntaxes as "import".
 
-####Whatis a Linter?
+#### Whatis a Linter?
+
 A linter is a program that analyses your source code for possible programmatic and styling errors. ESLint allows you to set rules specific to your project. If you deviate from those rules when writing code ESLint will report them to you. To check out the entire list of rules that ESLint supports follow this [link](https://eslint.org/docs/rules/)
 
 ### 2.1 Installing ESLint as a Dev Dependency
@@ -109,3 +110,63 @@ Now every time you save your file it will automatically be prettified.
 To format the document according to ESLint standards, add this line to the **settings.JSON** file.
 
 `"eslint.autoFixOnSave": true,`
+
+## 2. Setting up Sequilize with Postgres
+
+### 2.1 Adding dependencies
+
+First, we need to install the **Sequelize Dependency** and also the **driver for the database we're going to utilize**
+
+```
+yarn add sequelize
+yarn add pg pg-hstore
+
+```
+### 2.2 Setting up the connection
+
+We need to create a file called *database.js* inside a config folder and add the information about the server in it. Such as:
+
+```
+module.exports = {
+  dialect: "postgres",
+  host: "localhost",
+  username: "postgres",
+  password: "0304",
+  database: "gobarber",
+  define: {
+    timestamps: true,
+    underscored: true,
+    underscoredAll: true
+  }
+};
+
+```
+
+After creating the file, we need a **file that starts up the database**. It should contain the following code. It should be called **index.js** inside a *database* folder
+
+```
+
+import Sequelize from 'sequelize';
+import databaseConfig from '../config/database';
+import User from '../app/models/User';
+
+const models = [User];
+
+class Database {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    this.connection = new Sequelize(databaseConfig);
+    models.map(model => model.init(this.connection));
+  }
+}
+
+export default new Database();
+
+```
+
+After doing so, we need to **import the initialization code to our app**. Place the following code inside the *app.js* file
+
+`import './database';`
