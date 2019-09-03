@@ -12,13 +12,13 @@ The basic server structure will be imported from [this GitHub repository](https:
 
  Nodemon will be responsible for realoading the server automatically once it detects a change made to the files of the app. Sucrase is here to allow the use of modern syntax, such as "import from".
 
- ### Intalling the dependencies.
+ ### 1.1 Intalling the dependencies.
 
 The code below will install the dependencies locally to our project and make them as DevDependencies, not taking them to the production environment. 
 
  `$ yarn add nodemon sucrase -D`
 
- ### Adding scripts to the package.json
+ ### 1.2 Adding scripts to the package.json
 
  We'll add the following custom script into the package.json file. 
 
@@ -30,7 +30,7 @@ The code below will install the dependencies locally to our project and make the
   },
  ```
 
- ### Configuring Nodemon so it runs Sucrase when we call it
+ ### 1.3 Configuring Nodemon so it runs Sucrase when we call it
 
  To do so, we need to create a file in the root of our application called *nodemon.json* with the following content:
 
@@ -53,3 +53,53 @@ The code below will install the dependencies locally to our project and make the
  ## 2. Setting up Prettier + ESLint + EditorConfig
 
  These softwares will be responsible for formatting the code according to a standard (Airbnb), check for typos and process new syntaxes as "import".
+ 
+ ####Whatis a Linter?
+ A linter is a program that analyses your source code for possible programmatic and styling errors. ESLint allows you to set rules specific to your project. If you deviate from those rules when writing code ESLint will report them to you. To check out the entire list of rules that ESLint supports follow this [link](https://eslint.org/docs/rules/)
+
+### 2.1 Installing ESLint as a Dev Dependency
+
+To install it, just run this command on the terminal:
+
+`$  yarn add eslint -d`
+
+### 2.2 Initialize ESLint for the project
+
+By running the following code, we'll be prompted to chose some of our preferences
+
+`$ yarn eslint --init `
+
+Make sure to select **Airbnb** style guide for this and a JSON file extension at the end. At the end, you will be prompted to install the Airbnb config to the ESLint preferences
+
+### 2.3 Edit the .eslintrc.json 
+
+Make sure to place the following blocks of code to the ESLint configuration file. More rules can be implemented according to necessity:
+
+```
+
+```
+
+
+> To see ESLint at work, run: `$  ./node_modules/.bin/eslint [server.js]  `
+
+### 2.4 Installing Prettier
+
+Run the following code:
+
+` $  yarn add prettier -d`
+
+### 2.5 Syncing Prettier and ESLint
+
+####Run the following command:
+
+` $ yarn add eslint-config-prettier eslint-plugin-prettier -d` 
+
+#### Add Prettier to the "Extends" block of the .eslintrc file:
+
+`"extends": ["airbnb", "plugin:prettier/recommended"]`
+
+By doing this we will get Prettier errors included in ESLint errors. 
+
+###2.6 Automating the process
+
+First, we need to **install** the extensions both for Prettier and for ESLint on VSC.
