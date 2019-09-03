@@ -111,6 +111,18 @@ To format the document according to ESLint standards, add this line to the **set
 
 `"eslint.autoFixOnSave": true,`
 
+### 2.7 Configuring Prettier
+
+Create a file namde **.prettierrc** and place the following JSON inside. Further configuration can be placed in the future
+
+```
+{
+  "singleQuote": true,
+  "trailingComma": "es5"
+}
+
+```
+
 ## 2. Setting up Sequilize with Postgres
 
 ### 2.1 Adding dependencies
