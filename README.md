@@ -89,7 +89,7 @@ Run the following code:
 
 ### 2.5 Syncing Prettier and ESLint
 
-####Run the following command:
+#### Run the following command:
 
 `$ yarn add eslint-config-prettier eslint-plugin-prettier -d`
 
