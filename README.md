@@ -77,7 +77,12 @@ Make sure to select **Airbnb** style guide for this and a JSON file extension at
 Make sure to place the following blocks of code to the ESLint configuration file. More rules can be implemented according to necessity:
 
 ```
-
+    "prettier/prettier": "error",
+    "linebreak-style": 0,
+    "class-methods-use-this": "off",
+    "no-param-reassign": "off",
+    camelcase: "off",
+    "no-unused-vars": ["error", { argsIgnorePattern: "next" }]
 ```
 
 > To see ESLint at work, run: `$ ./node_modules/.bin/eslint [server.js]`
@@ -122,9 +127,10 @@ yarn add sequelize
 yarn add pg pg-hstore
 
 ```
+
 ### 2.2 Setting up the connection
 
-We need to create a file called *database.js* inside a config folder and add the information about the server in it. Such as:
+We need to create a file called _database.js_ inside a config folder and add the information about the server in it. Such as:
 
 ```
 module.exports = {
@@ -142,7 +148,7 @@ module.exports = {
 
 ```
 
-After creating the file, we need a **file that starts up the database**. It should contain the following code. It should be called **index.js** inside a *database* folder
+After creating the file, we need a **file that starts up the database**. It should contain the following code. It should be called **index.js** inside a _database_ folder
 
 ```
 
@@ -167,6 +173,6 @@ export default new Database();
 
 ```
 
-After doing so, we need to **import the initialization code to our app**. Place the following code inside the *app.js* file
+After doing so, we need to **import the initialization code to our app**. Place the following code inside the _app.js_ file
 
 `import './database';`
